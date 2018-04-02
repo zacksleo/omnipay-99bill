@@ -1,0 +1,23 @@
+{
+    "name": "zacksleo/omnipay-99bill",
+    "description": "99bill driver for the Omnipay PHP payment processing library: 快钱支付SDK",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zacksleo",
+            "email": "zacksleo@gmail.com"
+        }
+    ],
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Bill99\\": "src/"
+        }
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    }
+}
