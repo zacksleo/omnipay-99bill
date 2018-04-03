@@ -103,7 +103,7 @@ class Signer
     protected function sort($params)
     {
         if (isset($params['payAmount'])) {
-            return $this->sortReturn();
+            return $this->sortReturn($params);
         }
         return $this->sortRequest($params);
     }

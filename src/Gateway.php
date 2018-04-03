@@ -3,6 +3,7 @@
 namespace Omnipay\Bill99;
 
 use Omnipay\Bill99\Message\PurchaseRequest;
+use Omnipay\Bill99\Message\CompletePurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 
 /**
@@ -173,6 +174,6 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest(CompletePurchaseRequest::class, parameters);
+        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 }

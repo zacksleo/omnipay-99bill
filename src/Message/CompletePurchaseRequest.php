@@ -38,17 +38,27 @@ class CompletePurchaseRequest extends PurchaseRequest
         return $this->getParameter('params');
     }
 
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setParams($value)
+    {
+        return $this->setParameter('params', $value);
+    }
+
     public function sendData($data)
     {
         $signer = new Signer($data);
         $signer->setSort(true);
         $content = $signer->getContentToSign();
-        $match = (new Signer())->verifyWithRSA($content, $sign, $this->getBill99PublicKey());
+        $match = (new Signer())->verifyWithRSA($content, $data['signMsg'], $this->getBill99PublicKey());
         if ($match && isset($data['payResult']) && $data['payResult'] == '10') {
             $data['paid'] = true;
         } else {
             $data['paid'] = false;
         }
-        return $this->response = new CompletePurchaseResponse($this, $responseData);
+        return $this->response = new CompletePurchaseResponse($this, $data);
     }
 }
