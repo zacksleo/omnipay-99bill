@@ -72,15 +72,13 @@ try {
          * 订单金额 $data['orderAmount']/100,
          * 快钱交易号 $data['dealId'],         
         */
-        die('success'); //The response should be 'success' only
+        die('success');
     } else {
-        if (Yii::$app->request->isGet) {
-            return $this->redirect("/order/paid");
-        }
+       //@todo 支付失败的业务逻辑
         die('fail');
     }
 } catch (Exception $e) {
-    // @todo 这里为支付失败业务逻辑
+    // @todo 这里为支付异常业务逻辑
     die('fail');
 }
 ```
