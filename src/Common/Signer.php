@@ -55,7 +55,9 @@ class Signer
     {
         $params = $this->params;
         $this->unsetKeys($params);
-        $params = $this->sort($params);
+        if ($this->sort) {
+            $params = $this->sort($params);
+        }
         $params = $this->filter($params);
         return $params;
     }
@@ -97,11 +99,20 @@ class Signer
     }
 
 
+    protected function sort($params)
+    {
+        if (isset($params['payAmount'])) {
+            return $this->sortRequest();
+        }
+        return $this->sortReturn($params);
+    }
+
     /**
+     * 对发送到快钱的参数排序
      * @param $params
      * @return array
      */
-    protected function sort($params)
+    protected function sortRequest($params)
     {
         return [
             'inputCharset' => $params['inputCharset'],
@@ -114,9 +125,13 @@ class Signer
             'payerName' => $params['payerName'],
             'payerContactType' => $params['payerContactType'],
             'payerContact' => $params['payerContact'],
+            'payerIdType' => $params['payerIdType'],
+            'payerId' => $params['payerId'],
+            'payerIP' => $params['payerIP'],
             'orderId' => $params['orderId'],
             'orderAmount' => $params['orderAmount'],
             'orderTime' => $params['orderTime'],
+            'orderTimestamp' => $params['orderTimestamp'],
             'productName' => $params['productName'],
             'productNum' => $params['productNum'],
             'productId' => $params['productId'],
@@ -125,8 +140,53 @@ class Signer
             'ext2' => $params['ext2'],
             'payType' => $params['payType'],
             'bankId' => $params['bankId'],
+            'period' => $params['period'],
+            'cardIssuer' => $params['cardIssuer'],
+            'cardNum' => $params['cardNum'],
+            'remitType' => $params['remitType'],
+            'remitCode' => $params['remitCode'],
             'redoFlag' => $params['redoFlag'],
             'pid' => $params['pid'],
+            'submitType' => $params['submitType'],
+            'orderTimeOut' => $params['orderTimeOut'],
+            'extDataType' => $params['extDataType'],
+            'extDataContent' => $params['extDataContent'],
+        ];
+    }
+
+    /**
+     * 对快钱返回到商户参数进行排序
+     * @param $params
+     * @return array
+     */
+    protected function sortReturn($params)
+    {
+        return [
+            'merchantAcctId' => $params['merchantAcctId'],
+            'version' => $params['version'],
+            'language' => $params['language'],
+            'signType' => $params['signType'],
+            'payType' => $params['payType'],
+            'period' => $params['period'],
+            'period' => $params['period'],
+            'bankId' => $params['bankId'],
+            'bankId' => $params['bankId'],
+            'orderId' => $params['orderId'],
+            'orderTime' => $params['orderTime'],
+            'orderTime' => $params['orderTime'],
+            'orderAmount' => $params['orderAmount'],
+            'bindCard' => $params['bindCard'],
+            'bindMobile' => $params['bindMobile'],
+            'bindMobile' => $params['bindMobile'],
+            'dealId' => $params['dealId'],
+            'bankDealId' => $params['bankDealId'],
+            'dealTime' => $params['dealTime'],
+            'payAmount' => $params['payAmount'],
+            'fee' => $params['fee'],
+            'ext1' => $params['ext1'],
+            'ext2' => $params['ext2'],
+            'payResult' => $params['payResult'],
+            'errCode' => $params['errCode'],
         ];
     }
 
@@ -257,4 +317,18 @@ class Signer
         openssl_free_key($res);
         return $result;
     }
+
+
+    /**
+     * @param boolean $sort
+     *
+     * @return Signer
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
 }

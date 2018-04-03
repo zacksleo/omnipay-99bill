@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Omnipay\Bill99;
+namespace Omnipay\Bill99\Message;
 
 
 use Omnipay\Common\Message\AbstractResponse;
@@ -14,18 +14,29 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
         return false;
     }
 
+    public function isRedirect()
+    {
+        return true;
+    }
+
     public function getRedirectUrl()
     {
-        // TODO: Implement getRedirectUrl() method.
+        return $this->request->getEndpoint();
     }
 
-    public function getRedirectData()
-    {
-        // TODO: Implement getRedirectData() method.
-    }
-
+    /**
+     * Get the required redirect method (either GET or POST).
+     */
     public function getRedirectMethod()
     {
-        // TODO: Implement getRedirectMethod() method.
+        return 'POST';
+    }
+
+    /**
+     * Gets the redirect form data array, if the redirect method is POST.
+     */
+    public function getRedirectData()
+    {
+        return $this->getData();
     }
 }

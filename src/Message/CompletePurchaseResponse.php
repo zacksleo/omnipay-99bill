@@ -11,4 +11,14 @@ class CompletePurchaseResponse extends AbstractResponse
     {
         return true;
     }
+
+    public function isPaid()
+    {
+        $data = $this->data;
+        if ($data['paid']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
