@@ -1,14 +1,28 @@
 # omnipay-99bill
+
 99bill driver for the Omnipay PHP payment processing library:  快钱支付SDK
 
-## Quick Start
+## Quick Start  快速开始
 
-### 发起支付 (Purchase)
+[Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
+processing library for PHP 5.3+. This package implements WechatPay support for Omnipay.
+
+### Install 安装
+
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
+
+```shell
+
+$ composer require zacksleo/omnipay-99bill -vvv
+
+```
+
+### Purchase 发起支付
 
 ```php
 /* @var \Omnipay\Bill99\Gateway $gateway */
 $gateway = \Omnipay\Omnipay::create('Bill99');
-$gateway->setTestMode(false); // 正式环境
 $gateway->setPrivateKey('the_app_private_key'); //私钥内容
 $gateway->setReturnUrl('https://www.example.com/return');
 $gateway->setNotifyUrl('https://www.example.com/return');
@@ -81,4 +95,13 @@ try {
     // @todo 这里为支付异常业务逻辑
     die('fail');
 }
+```
+
+## Advance Config  其他配置
+
+### 配置测试环境
+
+```php
+$gateway->setTestMode(true); // 测试环境
+
 ```
