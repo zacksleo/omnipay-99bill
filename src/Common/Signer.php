@@ -8,6 +8,7 @@ use Exception;
  * Sign Tool for Alipay
  * Class Signer
  * @package Omnipay\Bill99\Common
+ * @author lokielse<lokielse@gmail.com>
  */
 class Signer
 {
@@ -330,5 +331,4 @@ class Signer
 
         return $this;
     }
-
 }

@@ -4,6 +4,11 @@ namespace Omnipay\Bill99\Message;
 
 use Omnipay\Bill99\Common\Signer;
 
+/**
+ * Class AbstractRequest
+ * @package Omnipay\Bill99\Message
+ * @author zacksleo <zacksleo@gmail.com>
+ */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     protected $method = 'POST';
@@ -18,7 +23,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->getTestMode() ? $this->sandBoxEndpoint : $this->productionEndpoint;
     }
-
 
     /**
      * @return mixed

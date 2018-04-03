@@ -1,6 +1,5 @@
 <?php
 
-
 namespace tests;
 
 use Omnipay\Bill99\Gateway;

@@ -1,12 +1,15 @@
 <?php
 
-
 namespace Omnipay\Bill99\Message;
-
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
+/**
+ * Class PurchaseResponse
+ * @package Omnipay\Bill99\Message
+ * @author zacksleo <zacksleo@gmail.com>
+ */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     public function isSuccessful()

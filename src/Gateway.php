@@ -5,6 +5,11 @@ namespace Omnipay\Bill99;
 use Omnipay\Bill99\Message\PurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 
+/**
+ * Class Gateway
+ * @package Omnipay\Bill99
+ * @author zacksleo <zacksleo@gmail.com>
+ */
 class Gateway extends AbstractGateway
 {
     public function getName()
@@ -57,7 +62,6 @@ class Gateway extends AbstractGateway
     {
         $this->setParameter('merchantAcctId', $mchId);
     }
-
 
     public function getMchId()
     {
@@ -167,7 +171,7 @@ class Gateway extends AbstractGateway
      * @param array $parameters
      * @return \Omnipay\Common\Message\AbstractRequest|\Omnipay\Common\Message\RequestInterface
      */
-    function completePurchase(array $parameters = array())
+    public function completePurchase(array $parameters = array())
     {
         return $this->createRequest(CompletePurchaseRequest::class, parameters);
     }

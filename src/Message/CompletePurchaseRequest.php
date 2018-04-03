@@ -1,14 +1,16 @@
 <?php
 
-
 namespace Omnipay\Bill99\Message;
-
 
 use Omnipay\Bill99\Common\Signer;
 
+/**
+ * Class CompletePurchaseRequest
+ * @package Omnipay\Bill99\Message
+ * @author zacksleo <zacksleo@gmail.com>
+ */
 class CompletePurchaseRequest extends PurchaseRequest
 {
-
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
