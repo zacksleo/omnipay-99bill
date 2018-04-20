@@ -85,21 +85,22 @@ try {
          * $data['orderId']  订单号
          * 订单金额 $data['orderAmount']/100,
          * 快钱交易号 $data['dealId'],         
-        */
-        /**
-         * 这里需要注意，如果同步回调和同步回调（两者均为GET）在同一处处理，
+         */
+        /** 这里需要注意，如果同步回调和同步回调（两者均为GET）在同一处处理，
          * 需要通过一定方式区分是异步还是同步，两者返回信息不同，如用户登录状态($_SESSION[uid])
          */
-        //异步回调，该返回值为快钱必需
+        //异步回调demo，该返回值为快钱必需
         die("<result>1</result><redirecturl>$url</redirecturl>");
         //同步回调
         // redirect跳转页面...
     } else {
        // @todo 支付失败的业务逻辑
-        die("<result>0</result><redirecturl>$url</redirecturl>");
+       //异步回调demo，该返回值为快钱必需
+       die("<result>0</result><redirecturl>$url</redirecturl>");
     }
 } catch (Exception $e) {
     // @todo 这里为支付异常业务逻辑
+    //异步回调demo，该返回值为快钱必需
     die("<result>0</result><redirecturl>$url</redirecturl>");
 }
 ```
