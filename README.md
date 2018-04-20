@@ -73,7 +73,7 @@ $gateway->setNotifyUrl('https://www.example.com/return');
 $gateway->setBill99PublicKey('99bill_publickey'); //从快钱下载并提取出的public key
 /* @var $request \Omnipay\Bill99\Message\CompletePurchaseRequest */
 $request = $gateway->completePurchase();
-$request->setParams(array_merge($_POST, $_GET));
+$request->setParams(array_merge($_GET));
 try {
     /* @var $response \Omnipay\Bill99\Message\CompletePurchaseResponse */
     $response = $request->send();
@@ -86,14 +86,20 @@ try {
          * 订单金额 $data['orderAmount']/100,
          * 快钱交易号 $data['dealId'],         
         */
-        die('success');
-    } else {
+        /**
+        * 这里需要注意，如果同步回调和同步回调（两者均为GET）在同一处处理，需要通过一定方式区分是异步还是同步，两者返回信息不同，如用户登录状态($_SESSION['uid'])
+        */
+        //异步回调，该返回值为快钱必需
+        die("<result>1</result><redirecturl>$url</redirecturl>");
+        //同步回调
+        // redirect跳转页面...
+    } else {
        //@todo 支付失败的业务逻辑
-        die('fail');
+        die("<result>0</result><redirecturl>$url</redirecturl>");
     }
 } catch (Exception $e) {
     // @todo 这里为支付异常业务逻辑
-    die('fail');
+    die("<result>0</result><redirecturl>$url</redirecturl>");
 }
 ```
 
