@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "omnipay/common": "~2.0"
+        "omnipay/common": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -18,6 +18,6 @@
         }
     },
     "require-dev": {
-        "omnipay/tests": "~2.0"
+        "omnipay/tests": "^3.0"
     }
 }
